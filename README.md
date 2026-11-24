@@ -1,4 +1,4 @@
-# MII Order SRE
+# MINI Order SRE
 
 Reliability and operational documentation for the MII order service.
 
