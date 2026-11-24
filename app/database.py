@@ -1,9 +1,12 @@
 import os
+import logging
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
 load_dotenv()
+
+logger = logging.getLogger(__name__)
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 
@@ -30,3 +33,10 @@ def get_db():
 		yield db
 	finally:
 		db.close()
+
+def get_users(db):
+	try:
+		return db.query(User).all()
+	except Exception:
+		logger.exception("Failed to retrive users from database")
+		raise
